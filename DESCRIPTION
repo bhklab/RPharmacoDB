@@ -1,0 +1,8 @@
+Package: RPharmacoDB
+Title: R interface to PharmacoDB
+Version: 0.0.0.0
+Author: Adrian She <adrian.she@alumni.ubc.ca>
+Maintainer: Adrian She <adrian.she@alumni.ubc.ca>
+License: Artistic-2.0
+Description: R interface for accessing PharmacoDB, an integrative repository of pharmacogenomic data
+Depends: R (>= 3.1.0), RCurl, RJSONIO, data.table, plyr
