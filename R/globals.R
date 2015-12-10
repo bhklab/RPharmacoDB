@@ -3,7 +3,7 @@ library(RCurl)
 library(RJSONIO)
 
 ## host of the web service
-host <- "http://142.1.33.22:5000" 
+host <- "https://www.pmgenomics.ca/pharmacodb/" 
 
 ## json:  json string containing  data
 ## return data.frame with parsed json string 

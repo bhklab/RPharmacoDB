@@ -76,7 +76,7 @@ processJSONCuration <- function(json) {
 getCurationByStudy <- function(type, study) {
   if (is.null(study)) {
     url <- paste0(host, "/curation/", type, "/")
-    json <- getURL(url)
+    json <- getURL(url, ssl.verifypeer= FALSE)
     df <- processJSONCuration(json)
   }
   else {
@@ -103,7 +103,7 @@ getCurationByType <- function(type, subtype) {
   url <- sapply(subtype, function (x) paste0(host, "/curation/", type, "/type/", x, "/"))
   df <- lapply(url, function (x) {
         if (url.exists(x)) {
-          json <- getURL(x)
+          json <- getURL(x, ssl.verifypeer = FALSE)
           frame <- processJSONCuration(json)
           return(frame)
         }

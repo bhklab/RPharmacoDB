@@ -14,7 +14,7 @@ getAllCells <- function(drug) {
   urls <- lapply(drug, function (x) paste0(host, "/test/cell/", x, "/"))
   vals <- lapply(urls, function (x) {
   	if (url.exists(x)) {
-  		json <- getURL(x)
+  		json <- getURL(x, ssl.verifypeer = FALSE)
   		frame <- rbindlist(lapply(fromJSON(json)$cells, function (frame) data.frame("cellline_id" = frame["cellline_id"], "study_name" = frame["study_name"])))
   		return(frame)
   	}
@@ -35,7 +35,7 @@ getAllDrugs <- function(cell) {
   urls <- lapply(cell, function (x) paste0(host, "/test/drug/", x, "/"))
   vals <- lapply(urls, function (x) {
     if (url.exists(x)) {
-      json <- getURL(x)
+      json <- getURL(x, ssl.verifypeer =FALSE)
       frame <- rbindlist(lapply(fromJSON(json)$drugs, function (frame) data.frame("drug_id" = frame["drug_id"], "study_name" = frame["study_name"])))
       return(frame)
     }
@@ -50,7 +50,7 @@ getAllDrugs <- function(cell) {
 #' @return vector of studies
 #' @export
 getStudies <- function() {
-  json <- getURL(paste0(host, "/studies/"))
+  json <- getURL(paste0(host, "/studies/"), ssl.verifypeer = FALSE)
   return(fromJSON(json)$studies)
 }
 
@@ -61,7 +61,7 @@ getStudies <- function() {
 #' @return vector of studies
 #' @export
 getDataStudies <- function() {
-  json <- getURL(paste0(host, "/data/studies/"))
+  json <- getURL(paste0(host, "/data/studies/"), ssl.verifypeer = FALSE)
   return(fromJSON(json)$studies)
 }
 
@@ -76,7 +76,7 @@ listSummaryStats <- function(study) {
   vals <- lapply(study, function (x){
     url <- paste0(host, "/data/summary/", x, "/")
     if (url.exists(url)) {
-      json <- getURL(url)
+      json <- getURL(url, ssl.verifypeer = FALSE)
       return(fromJSON(json)$stats)
     }
     else { NA }

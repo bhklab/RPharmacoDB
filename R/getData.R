@@ -44,7 +44,7 @@ getDataset <- function(study,summary=FALSE,stats=NULL) {
   ## Query URLs and then parse data
   dfs <- lapply(data, function (x) {
     if (url.exists(x)) {
-      json <- getURL(x)
+      json <- getURL(x, ssl.verifypeer = FALSE)
       data <- processJSONData(json)
       return(data)
     }
@@ -133,7 +133,7 @@ getExpData <- function(cellline=NULL, drug=NULL, summary=FALSE, stats=NULL) {
   ## Query URLs and parse
   dfs <- lapply(url, function (x) {
     if (url.exists(x)) {
-      json <- getURL(x)
+      json <- getURL(x, ssl.verifypeer = FALSE)
       data <- processJSONData(json)
       return(data)
     }
